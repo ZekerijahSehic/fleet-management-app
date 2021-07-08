@@ -1,4 +1,7 @@
 package com.zekerijah.fleetmanagement.service;
 
-public interface VehicleMovementService {
+import org.springframework.stereotype.Service;
+
+@Service
+public class VehicleMovementService {
 }

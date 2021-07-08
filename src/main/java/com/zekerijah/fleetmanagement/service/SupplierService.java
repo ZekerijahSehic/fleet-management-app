@@ -1,4 +1,7 @@
 package com.zekerijah.fleetmanagement.service;
 
-public interface SupplierService {
+import org.springframework.stereotype.Service;
+
+@Service
+public class SupplierService {
 }

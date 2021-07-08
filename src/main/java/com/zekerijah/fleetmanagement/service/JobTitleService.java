@@ -1,4 +1,7 @@
 package com.zekerijah.fleetmanagement.service;
 
-public interface JobTitleService {
+import org.springframework.stereotype.Service;
+
+@Service
+public class JobTitleService {
 }
