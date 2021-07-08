@@ -400,6 +400,10 @@
           </div>
         </div>
           <h1> Countries </h1>
+
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCountryModal">Add Country</button>
+
+
           <table class="table table-striped">
               <thead>
               <tr>
@@ -435,6 +439,50 @@
     </div>
   </section>
   <!-- container section end -->
+
+  <div class="modal fade" id="addCountryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Add new country</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <form th:action="@{/countries/addnew}" method="post">
+                      <div class="form-group">
+                          <label for="description" class="col-form-label">Description:</label>
+                          <input type="text" class="form-control" id="description" name="description">
+                      </div>
+                      <div class="form-group">
+                          <label for="capital" class="col-form-label">Capital:</label>
+                          <input type="text" class="form-control" id="capital" name="capital">
+                      </div>
+                      <div class="form-group">
+                          <label for="code" class="col-form-label">Code:</label>
+                          <input type="text" class="form-control" id="code" name="code">
+                      </div>
+                      <div class="form-group">
+                          <label for="continent" class="col-form-label">Continent:</label>
+                          <input type="text" class="form-control" id="continent" name="continent">
+                      </div>
+                      <div class="form-group">
+                          <label for="nationality" class="col-form-label">Nationality:</label>
+                          <input type="text" class="form-control" id="nationality" name="nationality">
+                      </div>
+                      <div class="form-group">
+                          <button type="submit" class="btn btn-success">Submit</button>
+                      </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
   <!-- javascripts -->
   <script src="js/jquery.js"></script>
   <script src="js/bootstrap.min.js"></script>
