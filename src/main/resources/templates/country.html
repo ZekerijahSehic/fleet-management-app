@@ -399,9 +399,26 @@
             </ol>
           </div>
         </div>
-        <!-- page start-->
           <h1> Countries </h1>
-        <!-- page end-->
+          <table class="table table-striped">
+              <thead>
+              <tr>
+                  <th>ID</th>
+                  <th>Code</th>
+                  <th>Capital</th>
+                  <th>Description</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="country:${countries}">
+                  <td th:text="${country.id}"></td>
+                  <td th:text="${country.code}"></td>
+                  <td th:text="${country.capital}"></td>
+                  <td th:text="${country.description}"></td>
+              </tr>
+              </tbody>
+          </table>
+
       </section>
     </section>
     <!--main content end-->
