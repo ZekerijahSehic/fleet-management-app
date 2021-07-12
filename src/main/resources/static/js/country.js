@@ -15,4 +15,29 @@ $('document').ready(function() {
       });
       $('#editCountryModal').modal();
    });
+
+   $('table #detailsButton').on('click', function (event){
+      event.preventDefault();
+
+      var href = $(this).attr('href');
+
+      $.get(href, function (country, status) {
+         $('#idDetails').val(country.id);
+         $('#codeDetails').val(country.code);
+         $('#capitalDetails').val(country.capital);
+         $('#nationalityDetails').val(country.nationality);
+         $('#continentDetails').val(country.continent);
+         $('#descriptionDetails').val(country.description);
+      });
+      $('#detailsCountryModal').modal();
+   });
+
+   $('table #deleteButton').on('click', function(event){
+      event.preventDefault();
+
+      var href = $(this).attr('href');
+
+      $('#confirmDeleteButton').attr('href', href);
+      $('#deleteCountryModal').modal();
+   });
 });
