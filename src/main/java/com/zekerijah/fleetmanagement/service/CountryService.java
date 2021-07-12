@@ -22,7 +22,7 @@ public class CountryService {
         return countryRepository.save(country);
     }
 
-    public Optional<Country> findById(Integer id){
+    public Optional<Country> findById(int id) {
         return countryRepository.findById(id);
     }
 }
