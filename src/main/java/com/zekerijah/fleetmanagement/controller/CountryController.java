@@ -35,4 +35,10 @@ public class CountryController {
     public Optional<Country> findById(int id) {
         return countryService.findById(id);
     }
+
+    @RequestMapping(value = "/countries/update", method = {RequestMethod.PUT, RequestMethod.GET})
+    public String updateCountry(Country country, int id){
+        countryService.saveCountry(country);
+        return "redirect:/countries";
+    }
 }
