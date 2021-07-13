@@ -1,7 +1,9 @@
 package com.zekerijah.fleetmanagement.service;
 
 import com.zekerijah.fleetmanagement.model.Location;
+import com.zekerijah.fleetmanagement.repository.CountryRepository;
 import com.zekerijah.fleetmanagement.repository.LocationRepository;
+import com.zekerijah.fleetmanagement.repository.StateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

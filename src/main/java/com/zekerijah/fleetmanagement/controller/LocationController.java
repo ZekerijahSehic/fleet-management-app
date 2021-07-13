@@ -1,7 +1,11 @@
 package com.zekerijah.fleetmanagement.controller;
 
+import com.zekerijah.fleetmanagement.model.Country;
 import com.zekerijah.fleetmanagement.model.Location;
+import com.zekerijah.fleetmanagement.model.State;
+import com.zekerijah.fleetmanagement.service.CountryService;
 import com.zekerijah.fleetmanagement.service.LocationService;
+import com.zekerijah.fleetmanagement.service.StateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,11 +19,23 @@ public class LocationController {
 
     @Autowired
     private LocationService locationService;
+    @Autowired
+    private StateService stateService;
+    @Autowired
+    private CountryService countryService;
 
     @GetMapping("/locations")
     public String getLoacations(Model model){
         List<Location> locations = locationService.getAllLocations();
+
+        List<State> states = stateService.getListState();
+        List<Country> countries = countryService.getListCountry();
+
         model.addAttribute("locations", locations);
+
+        model.addAttribute("states", states);
+        model.addAttribute("countries", countries);
+
         return "location";
     }
 

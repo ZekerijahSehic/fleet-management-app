@@ -412,6 +412,33 @@
         </div>
         <!-- page start-->
           <h1> Locations </h1>
+
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addLocationModal" >New Location</button>
+
+          <table class="table table-striped">
+              <thead>
+              <tr>
+                  <th>ID</th>
+                  <th>City</th>
+                  <th>Address</th>
+                  <th>Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="location:${locations}">
+                  <td th:text="${location.id}"></td>
+                  <td th:text="${location.city}"></td>
+                  <td th:text="${location.address}"></td>
+                  <td>
+                      <div class="btn-group">
+                          <a th:href="@{/locations/findById/(id=${location.id})}" class="btn btn-primary" id="editButton"><i class="icon_pencil-edit"></i></a>
+                          <a class="btn btn-success" id="detailsButton" th:href="@{/locations/findById/(id=${location.id})}"><i class="icon_document_alt"></i></a>
+                          <a th:href="@{/locations/delete/(id=${location.id})}" class="btn btn-danger" id="deleteButton"><i class="icon_close_alt2"></i></a>
+                      </div>
+                  </td>
+              </tr>
+              </tbody>
+          </table>
         <!-- page end-->
       </section>
     </section>
@@ -429,6 +456,189 @@
     </div>
   </section>
   <!-- container section end -->
+
+  <div class="modal fade" id="addLocationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <form th:action="@{/locations/addnew}" method="post">
+          <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">New Location</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <div class="form-group">
+                          <label for="city" class="col-form-label">City:</label>
+                          <input type="text" class="form-control" id="city" name="city" required>
+                      </div>
+                      <div class="form-group">
+                          <label for="address" class="col-form-label">Address:</label>
+                          <input type="text" class="form-control" id="address" name="address" required>
+                      </div>
+                      <div class="form-group">
+                          <label for="ddlCountryAdd" class="col-form-label">Country: </label>
+                          <select class="form-control" id="ddlCountryAdd" name="countryid">
+                              <option>-SELECT-</option>
+                              <option th:each="country : ${countries}"
+                                      th:value="${country.id}"
+                                      th:text="${country.description}">
+                              </option>
+                          </select>
+                      </div>
+                      <div class="form-group">
+                          <label for="ddlStateAdd" class="col-form-label">State: </label>
+                          <select class="form-control" id="ddlStateAdd" name="stateid">
+                              <option>-SELECT-</option>
+                              <option th:each="state : ${states}"
+                                      th:value="${state.id}"
+                                      th:text="${state.name}">
+                              </option>
+                          </select>
+                      </div>
+                  </div>
+
+
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Save</button>
+                  </div>
+              </div>
+          </div>
+      </form>
+  </div>
+
+  <div class="modal fade" id="editLocationModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+      <form th:action="@{/locations/update}" method="put">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="editModalLabel">Edit Location</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+
+                      <div class="form-group">
+                          <label for="idEdit" class="col-form-label">Id:</label>
+                          <input type="text" class="form-control" id="idEdit" name="id" readonly>
+                      </div>
+                      <div class="form-group">
+                          <label for="cityEdit" class="col-form-label">City:</label>
+                          <input type="text" class="form-control" id="cityEdit" name="city" required>
+                      </div>
+                      <div class="form-group">
+                          <label for="addressEdit" class="col-form-label">Address:</label>
+                          <input type="text" class="form-control" id="addressEdit" name="address" required>
+                      </div>
+                      <div class="form-group">
+                          <label for="ddlCountryEdit" class="col-form-label">Country: </label>
+                          <select class="form-control" id="ddlCountryEdit" name="countryid">
+                              <option>-SELECT-</option>
+                              <option th:each="country : ${countries}"
+                                      th:value="${country.id}"
+                                      th:text="${country.description}">
+                              </option>
+                          </select>
+                      </div>
+                      <div class="form-group">
+                          <label for="ddlStateEdit" class="col-form-label">State: </label>
+                          <select class="form-control" id="ddlStateEdit" name="stateid">
+                              <option>-SELECT-</option>
+                              <option th:each="state : ${states}"
+                                      th:value="${state.id}"
+                                      th:text="${state.name}">
+                              </option>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Save</button>
+                  </div>
+              </div>
+          </div>
+      </form>
+  </div>
+
+  <div class="modal fade" id="detailsLocationModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+      <form>
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="editModalLabel">Location Details</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+
+                      <div class="form-group">
+                          <label class="col-form-label">Id:</label>
+                          <input type="text" class="form-control" id="idDetails" name="id" readonly>
+                      </div>
+
+                      <div class="form-group">
+                          <label class="col-form-label">City: </label>
+                          <input type="text" class="form-control" id="cityDetails" name="city" readonly>
+                      </div>
+
+                      <div class="form-group">
+                          <label for="addressDetails" class="col-form-label">Address :</label>
+                          <input type="text" class="form-control" id="addressDetails" name="address" readonly>
+                      </div>
+
+                      <div class="form-group">
+                          <label for="ddlCountryDetails" class="col-form-label">Country: </label>
+                          <select class="form-control" id="ddlCountryDetails" name="countryid" disabled>
+                              <option>-SELECT-</option>
+                              <option th:each="country : ${countries}"
+                                      th:value="${country.id}"
+                                      th:text="${country.description}">
+                              </option>
+                          </select>
+                      </div>
+
+                      <div class="form-group">
+                          <label for="ddlStateDetails" class="col-form-label">State: </label>
+                          <select class="form-control" id="ddlStateDetails" name="stateid" disabled>
+                              <option>-SELECT-</option>
+                              <option th:each="state : ${states}"
+                                      th:value="${state.id}"
+                                      th:text="${state.name}">
+                              </option>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+              </div>
+          </div>
+      </form>
+  </div>
+
+  <div class="modal" id="deleteLocationModal" tabindex="-1" role="dialog" >
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title">Confirm delete</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <p>Are you sure you want to delete this state?</p>
+              </div>
+              <div class="modal-footer">
+                  <a href="" class="btn btn-primary" id="delRef">Yes, Delete</a>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
   <!-- javascripts -->
   <script src="js/jquery.js"></script>
   <script src="js/bootstrap.min.js"></script>
@@ -437,6 +647,7 @@
   <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
   <!--custome script for all page-->
   <script src="js/scripts.js"></script>
+  <script src="js/location.js"></script>
 
 
 </body>
