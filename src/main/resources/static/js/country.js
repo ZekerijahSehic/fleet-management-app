@@ -32,12 +32,10 @@ $('document').ready(function() {
       $('#detailsCountryModal').modal();
    });
 
-   $('table #deleteButton').on('click', function(event){
+   $('.table #deleteButton').on('click',function(event) {
       event.preventDefault();
-
       var href = $(this).attr('href');
-
-      $('#confirmDeleteButton').attr('href', href);
+      $('#deleteCountryModal #delRef').attr('href', href);
       $('#deleteCountryModal').modal();
    });
 });
