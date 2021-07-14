@@ -19,23 +19,11 @@ public class VehicleModelController {
 
     @Autowired
     private VehicleModelService vehicleModelService;
-    @Autowired
-    private StateService stateService;
-    @Autowired
-    private CountryService countryService;
 
     @GetMapping("/vehicle-model")
     public String getLoacations(Model model){
         List<VehicleModel> vehicleModelList = vehicleModelService.getAllVehicleModel();
-
-        List<State> states = stateService.getListState();
-        List<Country> countries = countryService.getListCountry();
-
         model.addAttribute("vehicleModelList", vehicleModelList);
-
-        model.addAttribute("states", states);
-        model.addAttribute("countries", countries);
-
         return "vehicle-model";
     }
 

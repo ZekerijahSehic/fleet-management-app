@@ -19,23 +19,12 @@ public class EmployeeTypeController {
 
     @Autowired
     private EmployeeTypeService employeeTypeService;
-    @Autowired
-    private StateService stateService;
-    @Autowired
-    private CountryService countryService;
 
     @GetMapping("/job-title")
     public String getLoacations(Model model){
         List<EmployeeType> jobTitleList = employeeTypeService.getAllEmployeType();
 
-        List<State> states = stateService.getListState();
-        List<Country> countries = countryService.getListCountry();
-
         model.addAttribute("jobTitleList", jobTitleList);
-
-        model.addAttribute("states", states);
-        model.addAttribute("countries", countries);
-
         return "job-title";
     }
 

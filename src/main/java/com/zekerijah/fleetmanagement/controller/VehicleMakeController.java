@@ -19,23 +19,11 @@ public class VehicleMakeController {
 
     @Autowired
     private VehicleMakeService vehicleMakeService;
-    @Autowired
-    private StateService stateService;
-    @Autowired
-    private CountryService countryService;
 
     @GetMapping("/vehicle-makes/")
     public String getVehicleMake(Model model){
         List<VehicleMake> vehicleMakeList = vehicleMakeService.getAllVehicleMake();
-
-        List<State> states = stateService.getListState();
-        List<Country> countries = countryService.getListCountry();
-
         model.addAttribute("vehicle-make", vehicleMakeList);
-
-        model.addAttribute("states", states);
-        model.addAttribute("countries", countries);
-
         return "vehicle-make";
     }
 

@@ -19,23 +19,11 @@ public class JobTitleController {
 
     @Autowired
     private JobTitleService jobTitleService;
-    @Autowired
-    private StateService stateService;
-    @Autowired
-    private CountryService countryService;
 
     @GetMapping("/job-title")
     public String getLoacations(Model model){
         List<JobTitle> jobTitleList = jobTitleService.getAllJobTitle();
-
-        List<State> states = stateService.getListState();
-        List<Country> countries = countryService.getListCountry();
-
         model.addAttribute("jobTitleList", jobTitleList);
-
-        model.addAttribute("states", states);
-        model.addAttribute("countries", countries);
-
         return "job-title";
     }
 

@@ -27,15 +27,7 @@ public class VehicleStatusController {
     @GetMapping("/vehicle-status")
     public String getLoacations(Model model){
         List<VehicleStatus> vehicleStatusList = vehicleStatusService.getAllVehicleStatus();
-
-        List<State> states = stateService.getListState();
-        List<Country> countries = countryService.getListCountry();
-
         model.addAttribute("vehicleStatusList", vehicleStatusList);
-
-        model.addAttribute("states", states);
-        model.addAttribute("countries", countries);
-
         return "vehicle-status";
     }
 
