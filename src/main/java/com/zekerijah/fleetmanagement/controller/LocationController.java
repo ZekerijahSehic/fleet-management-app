@@ -62,10 +62,4 @@ public class LocationController {
         locationService.delete(id);
         return "redirect:/locations";
     }
-
-
-
-
-
-
 }
