@@ -23,7 +23,7 @@ public class VehicleStatusService {
         return vehicleStatusRepository.save(vehicleStatus);
     }
 
-    public Optional<VehicleStatus> getById(int id){
+    public Optional<VehicleStatus> findById(int id){
         return vehicleStatusRepository.findById(id);
     }
 
