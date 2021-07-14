@@ -10,7 +10,7 @@ $('document').ready(function() {
          $('#cityEdit').val(vehicleStatus.description);
          $('#addressEdit').val(vehicleStatus.details);
       });
-      $('#editLocationModal').modal();
+      $('#editVehicleStatusModal').modal();
    });
 
    $('table #detailsButton').on('click', function (event){
@@ -20,16 +20,16 @@ $('document').ready(function() {
 
       $.get(href, function (vehicleStatus, status) {
          $('#idDetails').val(vehicleStatus.id);
-         $('#cityDetails').val(vehicleStatus.description);
-         $('#addressDetails').val(vehicleStatus.details);
+         $('#descriptionDetails').val(vehicleStatus.description);
+         $('#detailsDetails').val(vehicleStatus.details);
       });
-      $('#detailsLocationModal').modal();
+      $('#detailsVehicleStatusModal').modal();
    });
 
    $('.table #deleteButton').on('click',function(event) {
       event.preventDefault();
       var href = $(this).attr('href');
-      $('#deleteLocationModal #delRef').attr('href', href);
-      $('#deleteLocationModal').modal();
+      $('#deleteVehicleStatusModal #delRef').attr('href', href);
+      $('#deleteVehicleStatusModal').modal();
    });
 });

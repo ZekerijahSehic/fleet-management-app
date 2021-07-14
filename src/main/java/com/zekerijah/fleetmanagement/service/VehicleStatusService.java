@@ -27,7 +27,7 @@ public class VehicleStatusService {
         return vehicleStatusRepository.findById(id);
     }
 
-    public void delete(int id){
+    public void delete(Integer id){
         vehicleStatusRepository.deleteById(id);
     }
 }

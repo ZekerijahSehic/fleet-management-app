@@ -19,10 +19,6 @@ public class VehicleStatusController {
 
     @Autowired
     private VehicleStatusService vehicleStatusService;
-    @Autowired
-    private StateService stateService;
-    @Autowired
-    private CountryService countryService;
 
     @GetMapping("/vehicle-status")
     public String getLoacations(Model model){
