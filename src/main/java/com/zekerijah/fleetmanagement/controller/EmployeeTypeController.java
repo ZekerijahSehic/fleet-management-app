@@ -20,35 +20,35 @@ public class EmployeeTypeController {
     @Autowired
     private EmployeeTypeService employeeTypeService;
 
-    @GetMapping("/job-title")
+    @GetMapping("/employee-type")
     public String getLoacations(Model model){
-        List<EmployeeType> jobTitleList = employeeTypeService.getAllEmployeType();
+        List<EmployeeType> employeeTypeList = employeeTypeService.getAllEmployeType();
 
-        model.addAttribute("jobTitleList", jobTitleList);
-        return "job-title";
+        model.addAttribute("employeeTypeList", employeeTypeList);
+        return "employee-type";
     }
 
-    @PostMapping("/job-title/addnew")
-    public String addNew(EmployeeType jobTitle){
-        employeeTypeService.save(jobTitle);
-        return "redirect:/job-title";
+    @PostMapping("/employee-type/addnew")
+    public String addNew(EmployeeType employeeType){
+        employeeTypeService.save(employeeType);
+        return "redirect:/employee-type";
     }
 
-    @RequestMapping("/job-title/findById")
+    @RequestMapping("/employee-type/findById")
     @ResponseBody
     public Optional<EmployeeType> findEmployeeTypeById(Integer id){
         return employeeTypeService.findById(id);
     }
 
-    @RequestMapping(value = "/job-title/update", method = {RequestMethod.PUT, RequestMethod.GET})
-    public String updateEmployeeType(EmployeeType jobTitle){
-        employeeTypeService.save(jobTitle);
-        return "redirect:/job-title";
+    @RequestMapping(value = "/employee-type/update", method = {RequestMethod.PUT, RequestMethod.GET})
+    public String updateEmployeeType(EmployeeType employeeType){
+        employeeTypeService.save(employeeType);
+        return "redirect:/employee-type";
     }
 
-    @RequestMapping(value = "/job-title/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
+    @RequestMapping(value = "/employee-type/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
     public String deleteEmployeeType(Integer id){
         employeeTypeService.delete(id);
-        return "redirect:/job-title";
+        return "redirect:/employee-type";
     }
 }
