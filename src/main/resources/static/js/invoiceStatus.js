@@ -5,12 +5,12 @@ $('document').ready(function() {
 
       var href = $(this).attr('href');
 
-      $.get(href, function (invoiceStatus) {
-         $('#idEdit').val(invoiceStatus.id);
-         $('#cityEdit').val(invoiceStatus.description);
-         $('#addressEdit').val(invoiceStatus.details);
+      $.get(href, function (vehicleStatus) {
+         $('#idEdit').val(vehicleStatus.id);
+         $('#descriptionEdit').val(vehicleStatus.description);
+         $('#detailsEdit').val(vehicleStatus.details);
       });
-      $('#editLocationModal').modal();
+      $('#editInvoiceStatusModal').modal();
    });
 
    $('table #detailsButton').on('click', function (event){
@@ -18,18 +18,18 @@ $('document').ready(function() {
 
       var href = $(this).attr('href');
 
-      $.get(href, function (invoiceStatus, status) {
-         $('#idDetails').val(invoiceStatus.id);
-         $('#cityDetails').val(invoiceStatus.description);
-         $('#addressDetails').val(invoiceStatus.details);
+      $.get(href, function (vehicleStatus, status) {
+         $('#idDetails').val(vehicleStatus.id);
+         $('#descriptionDetails').val(vehicleStatus.description);
+         $('#detailsDetails').val(vehicleStatus.details);
       });
-      $('#detailsLocationModal').modal();
+      $('#detailsInvoiceStatusModal').modal();
    });
 
    $('.table #deleteButton').on('click',function(event) {
       event.preventDefault();
       var href = $(this).attr('href');
-      $('#deleteLocationModal #delRef').attr('href', href);
-      $('#deleteLocationModal').modal();
+      $('#deleteInvoiceStatusModal #delRef').attr('href', href);
+      $('#deleteInvoiceStatusModal').modal();
    });
 });
