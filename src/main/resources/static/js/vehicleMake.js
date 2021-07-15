@@ -10,7 +10,7 @@ $('document').ready(function() {
          $('#cityEdit').val(vehicleMake.description);
          $('#addressEdit').val(vehicleMake.details);
       });
-      $('#editLocationModal').modal();
+      $('#editVehicleMakeModal').modal();
    });
 
    $('table #detailsButton').on('click', function (event){
@@ -20,16 +20,16 @@ $('document').ready(function() {
 
       $.get(href, function (vehicleMake, status) {
          $('#idDetails').val(vehicleMake.id);
-         $('#cityDetails').val(vehicleMake.description);
-         $('#addressDetails').val(vehicleMake.details);
+         $('#descriptionDetails').val(vehicleMake.description);
+         $('#detailsDetails').val(vehicleMake.details);
       });
-      $('#detailsLocationModal').modal();
+      $('#detailsVehicleMakeModal').modal();
    });
 
    $('.table #deleteButton').on('click',function(event) {
       event.preventDefault();
       var href = $(this).attr('href');
-      $('#deleteLocationModal #delRef').attr('href', href);
-      $('#deleteLocationModal').modal();
+      $('#deleteVehicleMakeModal #delRef').attr('href', href);
+      $('#deleteVehicleMakeModal').modal();
    });
 });

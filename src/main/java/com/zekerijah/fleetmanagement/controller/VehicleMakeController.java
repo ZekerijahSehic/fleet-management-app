@@ -23,7 +23,7 @@ public class VehicleMakeController {
     @GetMapping("/vehicle-make")
     public String getVehicleMake(Model model){
         List<VehicleMake> vehicleMakeList = vehicleMakeService.getAllVehicleMake();
-        model.addAttribute("vehicle-make", vehicleMakeList);
+        model.addAttribute("vehicleMake", vehicleMakeList);
         return "vehicle-make";
     }
 
