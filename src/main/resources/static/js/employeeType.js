@@ -5,12 +5,12 @@ $('document').ready(function() {
 
       var href = $(this).attr('href');
 
-      $.get(href, function (employeeType) {
-         $('#idEdit').val(employeeType.id);
-         $('#cityEdit').val(employeeType.description);
-         $('#addressEdit').val(employeeType.details);
+      $.get(href, function (vehicleStatus) {
+         $('#idEdit').val(vehicleStatus.id);
+         $('#descriptionEdit').val(vehicleStatus.description);
+         $('#detailsEdit').val(vehicleStatus.details);
       });
-      $('#editLocationModal').modal();
+      $('#editEmployeeTypeModal').modal();
    });
 
    $('table #detailsButton').on('click', function (event){
@@ -18,18 +18,18 @@ $('document').ready(function() {
 
       var href = $(this).attr('href');
 
-      $.get(href, function (employeeType, status) {
-         $('#idDetails').val(employeeType.id);
-         $('#cityDetails').val(employeeType.description);
-         $('#addressDetails').val(employeeType.details);
+      $.get(href, function (vehicleStatus, status) {
+         $('#idDetails').val(vehicleStatus.id);
+         $('#descriptionDetails').val(vehicleStatus.description);
+         $('#detailsDetails').val(vehicleStatus.details);
       });
-      $('#detailsLocationModal').modal();
+      $('#detailsEmployeeTypeModal').modal();
    });
 
    $('.table #deleteButton').on('click',function(event) {
       event.preventDefault();
       var href = $(this).attr('href');
-      $('#deleteLocationModal #delRef').attr('href', href);
-      $('#deleteLocationModal').modal();
+      $('#deleteEmployeeTypeModal #delRef').attr('href', href);
+      $('#deleteEmployeeTypeModal').modal();
    });
 });
