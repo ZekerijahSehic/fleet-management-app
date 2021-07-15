@@ -20,32 +20,32 @@ public class VehicleMakeController {
     @Autowired
     private VehicleMakeService vehicleMakeService;
 
-    @GetMapping("/vehicle-makes")
+    @GetMapping("/vehicle-make")
     public String getVehicleMake(Model model){
         List<VehicleMake> vehicleMakeList = vehicleMakeService.getAllVehicleMake();
         model.addAttribute("vehicle-make", vehicleMakeList);
         return "vehicle-make";
     }
 
-    @PostMapping("/vehicle-makes/addnew")
+    @PostMapping("/vehicle-make/addnew")
     public String addNew(VehicleMake vehicleMake){
         vehicleMakeService.save(vehicleMake);
         return "redirect:/vehicle-make";
     }
 
-    @RequestMapping("/vehicle-makes/findById")
+    @RequestMapping("/vehicle-make/findById")
     @ResponseBody
     public Optional<VehicleMake> findById(int id){
         return vehicleMakeService.findById(id);
     }
 
-    @RequestMapping(value = "/vehicle-makes/update", method = { RequestMethod.PUT, RequestMethod.GET})
+    @RequestMapping(value = "/vehicle-make/update", method = { RequestMethod.PUT, RequestMethod.GET})
     public String update(VehicleMake vehicleMake){
         vehicleMakeService.save(vehicleMake);
         return "redirect:/vehicle-make";
     }
 
-    @RequestMapping(value = "/vehicle-makes/update", method = {RequestMethod.DELETE, RequestMethod.GET})
+    @RequestMapping(value = "/vehicle-make/update", method = {RequestMethod.DELETE, RequestMethod.GET})
     public String delete(int id){
         vehicleMakeService.delete(id);
         return "redirect:/vehicle-make";
