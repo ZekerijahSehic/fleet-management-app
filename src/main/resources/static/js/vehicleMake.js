@@ -5,10 +5,10 @@ $('document').ready(function() {
 
       var href = $(this).attr('href');
 
-      $.get(href, function (vehicleMake) {
-         $('#idEdit').val(vehicleMake.id);
-         $('#cityEdit').val(vehicleMake.description);
-         $('#addressEdit').val(vehicleMake.details);
+      $.get(href, function (vehicleStatus) {
+         $('#idEdit').val(vehicleStatus.id);
+         $('#descriptionEdit').val(vehicleStatus.description);
+         $('#detailsEdit').val(vehicleStatus.details);
       });
       $('#editVehicleMakeModal').modal();
    });
@@ -18,10 +18,10 @@ $('document').ready(function() {
 
       var href = $(this).attr('href');
 
-      $.get(href, function (vehicleMake, status) {
-         $('#idDetails').val(vehicleMake.id);
-         $('#descriptionDetails').val(vehicleMake.description);
-         $('#detailsDetails').val(vehicleMake.details);
+      $.get(href, function (vehicleStatus, status) {
+         $('#idDetails').val(vehicleStatus.id);
+         $('#descriptionDetails').val(vehicleStatus.description);
+         $('#detailsDetails').val(vehicleStatus.details);
       });
       $('#detailsVehicleMakeModal').modal();
    });

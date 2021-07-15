@@ -23,7 +23,7 @@ public class VehicleMakeController {
     @GetMapping("/vehicle-make")
     public String getVehicleMake(Model model){
         List<VehicleMake> vehicleMakeList = vehicleMakeService.getAllVehicleMake();
-        model.addAttribute("vehicleMake", vehicleMakeList);
+        model.addAttribute("vehicleMakes", vehicleMakeList);
         return "vehicle-make";
     }
 
@@ -45,7 +45,7 @@ public class VehicleMakeController {
         return "redirect:/vehicle-make";
     }
 
-    @RequestMapping(value = "/vehicle-make/update", method = {RequestMethod.DELETE, RequestMethod.GET})
+    @RequestMapping(value = "/vehicle-make/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
     public String delete(int id){
         vehicleMakeService.delete(id);
         return "redirect:/vehicle-make";
