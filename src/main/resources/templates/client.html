@@ -412,7 +412,37 @@
         </div>
         <!-- page start-->
           <h1> Clients </h1>
-        <!-- page end-->
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addClientModal">Add Client</button>
+          <table class="table table-striped">
+              <thead>
+              <tr>
+                  <th>Name</th>
+                  <th>Website</th>
+                  <th>Email</th>
+                  <th>City</th>
+                  <th>Phone</th>
+                  <th>Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="client:${clients}">
+                  <td th:text="${client.name}"></td>
+                  <td th:text="${client.website}"></td>
+                  <td th:text="${client.email}"></td>
+                  <td th:text="${client.city}"></td>
+                  <td th:text="${client.phone}"></td>
+                  <td>
+                      <div class="btn-group">
+                          <a th:href="@{/clients/findById/(id=${client.id})}" class="btn btn-primary" id="editButton"><i class="icon_pencil-edit"></i></a>
+                          <a class="btn btn-success" id="detailsButton" th:href="@{/clients/findById/(id=${client.id})}"><i class="icon_document_alt"></i></a>
+                          <a th:href="@{/clients/delete/(id=${client.id})}" class="btn btn-danger" id="deleteButton"><i class="icon_close_alt2"></i></a>
+                      </div>
+                  </td>
+              </tr>
+              </tbody>
+          </table>
+
+          <!-- page end-->
       </section>
     </section>
     <!--main content end-->
@@ -429,6 +459,357 @@
     </div>
   </section>
   <!-- container section end -->
+  <div class="modal fade" id="addClientModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <form th:action="@{/clients/addnew}" method="post">
+          <div class="modal-dialog modal-lg" role="document" style="width:70%">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Add new client</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+
+                  <div class="modal-body">
+                      <form>
+                          <table width="100%">
+                              <tr>
+                                  <td>
+                                      <div class="form-group row">
+                                          <label for="nameAdd" class="col-sm-4 col-form-label">Name: </label>
+                                          <div class="col-sm-6">
+                                              <input type="text" class="form-control" id="nameAdd" name="name" placeholder="Name">
+                                          </div>
+                                      </div>
+                                      <div class="form-group row">
+                                          <label for="detailsAdd" class="col-sm-4 col-form-label">Details: </label>
+                                          <div class="col-sm-6">
+                                              <input type="text" class="form-control" id="detailsAdd" name="details" placeholder="Details">
+                                          </div>
+                                      </div>
+                                      <div class="form-group row">
+                                          <label for="websiteAdd" class="col-sm-4 col-form-label">Website: </label>
+                                          <div class="col-sm-6">
+                                              <input type="text" class="form-control" id="websiteAdd" name="website" placeholder="Website">
+                                          </div>
+                                      </div>
+                                      <div class="form-group row">
+                                          <label for="addressAdd" class="col-sm-4 col-form-label">Address</label>
+                                          <div class="col-sm-6">
+                                              <input type="text" class="form-control" id="addressAdd" name="address" placeholder="Address">
+                                          </div>
+                                      </div>
+                                      <div class="form-group row">
+                                          <label for="ddlStateAdd" class="col-sm-4 col-form-label">State: </label>
+                                          <div class="col-sm-6">
+                                              <select class="form-control" id="ddlStateAdd" name="stateid">
+                                                  <option>-SELECT-</option>
+                                                  <option th:each="state : ${states}"
+                                                          th:value="${state.id}"
+                                                          th:text="${state.name}">
+                                                  </option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  <td width="50%" style="padding-left:10px">
+                                      <div class="form-group row">
+                                          <label for="ddlCountryAdd" class="col-sm-4 col-form-label">Country: </label>
+                                          <div class="col-sm-6">
+                                              <select class="form-control" id="ddlCountryAdd" name="countryid">
+                                                  <option>-SELECT-</option>
+                                                  <option th:each="country : ${countries}"
+                                                          th:value="${country.id}"
+                                                          th:text="${country.description}">
+                                                  </option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                      <div class="form-group row">
+                                          <label for="cityAdd" class="col-sm-4 col-form-label">City: </label>
+                                          <div class="col-sm-6">
+                                              <input type="text" class="form-control" id="cityAdd" name="city" placeholder="City">
+                                          </div>
+                                      </div>
+                                      <div class="form-group row">
+                                          <label for="phoneAdd" class="col-sm-4 col-form-label">Phone: </label>
+                                          <div class="col-sm-6">
+                                              <input type="text" class="form-control" id="phoneAdd" name="phone" placeholder="Phone">
+                                          </div>
+                                      </div>
+                                      <div class="form-group row">
+                                          <label for="mobileAdd" class="col-sm-4 col-form-label">Mobile: </label>
+                                          <div class="col-sm-6">
+                                              <input type="text" class="form-control" id="mobileAdd" name="mobile" placeholder="Mobile">
+                                          </div>
+                                      </div>
+
+                                      <div class="form-group row">
+                                          <label for="emailAdd" class="col-sm-4 col-form-label">Email</label>
+                                          <div class="col-sm-6">
+                                              <input type="email" class="form-control" id="emailAdd" name="email" placeholder="Email">
+                                          </div>
+                                      </div>
+                                  </td>
+                              </tr>
+                          </table>
+                          <button type="submit" class="btn btn-primary">Sign in</button>
+                      </form>
+                  </div>
+
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Save</button>
+                  </div>
+              </div>
+          </div>
+      </form>
+  </div>
+
+  <div class="modal fade" id="editClientModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <form th:action="@{/clients/update}" method="put">
+          <div class="modal-dialog modal-lg" role="document" style="width:70%">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Edit client</h5>
+
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+
+                  <div class="modal-body">
+                      <form>
+                          <table width="100%">
+                              <tr>
+                                  <td>
+                                      <div class="form-group row">
+                                          <label for="idEdit" class="col-sm-4 col-form-label">ID: </label>
+                                          <div class="col-sm-6">
+                                              <input type="text" class="form-control" id="idEdit" name="id" readonly>
+                                          </div>
+                                      </div>
+                                      <div class="form-group row">
+                                          <label for="nameEdit" class="col-sm-4 col-form-label">Name: </label>
+                                          <div class="col-sm-6">
+                                              <input type="text" class="form-control" id="nameEdit" name="name">
+                                          </div>
+                                      </div>
+                                      <div class="form-group row">
+                                          <label for="detailsEdit" class="col-sm-4 col-form-label">Details: </label>
+                                          <div class="col-sm-6">
+                                              <input type="text" class="form-control" id="detailsEdit" name="details" >
+                                          </div>
+                                      </div>
+                                      <div class="form-group row">
+                                          <label for="websiteEdit" class="col-sm-4 col-form-label">Website: </label>
+                                          <div class="col-sm-6">
+                                              <input type="text" class="form-control" id="websiteEdit" name="website" >
+                                          </div>
+                                      </div>
+                                      <div class="form-group row">
+                                          <label for="addressEdit" class="col-sm-4 col-form-label">Address</label>
+                                          <div class="col-sm-6">
+                                              <input type="text" class="form-control" id="addressEdit" name="address" >
+                                          </div>
+                                      </div>
+                                      <div class="form-group row">
+                                          <label for="ddlStateEdit" class="col-sm-4 col-form-label">State: </label>
+                                          <div class="col-sm-6">
+                                              <select class="form-control" id="ddlStateEdit" name="stateid">
+                                                  <option>-SELECT-</option>
+                                                  <option th:each="state : ${states}"
+                                                          th:value="${state.id}"
+                                                          th:text="${state.name}">
+                                                  </option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                      <div class="form-group row">
+                                          <label for="ddlCountryEdit" class="col-sm-4 col-form-label">Country: </label>
+                                          <div class="col-sm-6">
+                                              <select class="form-control" id="ddlCountryEdit" name="countryid">
+                                                  <option>-SELECT-</option>
+                                                  <option th:each="country : ${countries}"
+                                                          th:value="${country.id}"
+                                                          th:text="${country.description}">
+                                                  </option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                      <div class="form-group row">
+                                          <label for="cityEdit" class="col-sm-4 col-form-label">City: </label>
+                                          <div class="col-sm-6">
+                                              <input type="text" class="form-control" id="cityEdit" name="city" >
+                                          </div>
+                                      </div>
+                                      <div class="form-group row">
+                                          <label for="phoneEdit" class="col-sm-4 col-form-label">Phone: </label>
+                                          <div class="col-sm-6">
+                                              <input type="text" class="form-control" id="phoneEdit" name="phone">
+                                          </div>
+                                      </div>
+                                      <div class="form-group row">
+                                          <label for="mobileEdit" class="col-sm-4 col-form-label">Mobile: </label>
+                                          <div class="col-sm-6">
+                                              <input type="text" class="form-control" id="mobileEdit" name="mobile">
+                                          </div>
+                                      </div>
+
+                                      <div class="form-group row">
+                                          <label for="emailEdit" class="col-sm-4 col-form-label">Email</label>
+                                          <div class="col-sm-6">
+                                              <input type="email" class="form-control" id="emailEdit" name="email" >
+                                          </div>
+                                      </div>
+                                  </td>
+                              </tr>
+                          </table>
+                          <button type="submit" class="btn btn-primary">Sign in</button>
+                      </form>
+                  </div>
+
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Save</button>
+                  </div>
+              </div>
+          </div>
+      </form>
+  </div>
+
+  <div class="modal fade" id="detailsClientModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+      <form>
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="editModalLabel">Client Details</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <table width="100%">
+                          <tr>
+                              <td>
+                                  <div class="form-group row">
+                                      <label for="idDetails" class="col-sm-4 col-form-label">Id: </label>
+                                      <div class="col-sm-6">
+                                          <input type="text" class="form-control" id="idDetails" name="id" placeholder="Id" readonly>
+                                      </div>
+                                  </div>
+                                  <div class="form-group row">
+                                      <label for="nameDetails" class="col-sm-4 col-form-label">Name: </label>
+                                      <div class="col-sm-6">
+                                          <input type="text" class="form-control" id="nameDetails" name="name" placeholder="Name" readonly>
+                                      </div>
+                                  </div>
+                                  <div class="form-group row">
+                                      <label for="detailsDetails" class="col-sm-4 col-form-label">Details.: </label>
+                                      <div class="col-sm-6">
+                                          <input type="text" class="form-control" id="detailsDetails" name="details" placeholder="Details" readonly>
+                                      </div>
+                                  </div>
+                                  <div class="form-group row">
+                                      <label for="websiteDetails" class="col-sm-4 col-form-label">website: </label>
+                                      <div class="col-sm-6">
+                                          <input type="text" class="form-control" id="websiteDetails" name="website" placeholder="Website" readonly>
+                                      </div>
+                                  </div>
+
+                                  <div class="form-group row">
+                                      <label for="addressDetails" class="col-sm-4 col-form-label">Address</label>
+                                      <div class="col-sm-6">
+                                          <input class="form-control" id="addressDetails" name="address" placeholder="Address" rows="2" readonly>
+                                      </div>
+                                  </div>
+                                  <div class="form-group row">
+                                      <label for="ddlStateDetails" class="col-sm-4 col-form-label">State/Province: </label>
+                                      <div class="col-sm-6">
+                                          <select class="form-control" id="ddlStateDetails" name="stateid" readonly>
+                                              <option>-SELECT-</option>
+                                              <option th:each="state : ${states}"
+                                                      th:value="${state.id}"
+                                                      th:text="${state.name}" readonly>
+                                              </option>
+                                          </select>
+                                      </div>
+                                  </div>
+                                  <div class="form-group row">
+                                      <label for="ddlCountryDetails" class="col-sm-4 col-form-label">Country: </label>
+                                      <div class="col-sm-6">
+                                          <select class="form-control" id="ddlCountryDetails" name="countryid" readonly>
+                                              <option>-SELECT-</option>
+                                              <option th:each="country : ${countries}"
+                                                      th:value="${country.id}"
+                                                      th:text="${country.description}">
+                                              </option>
+                                          </select>
+                                      </div>
+                                  </div>
+                                  <div class="form-group row">
+                                      <label for="cityDetails" class="col-sm-4 col-form-label">City: </label>
+                                      <div class="col-sm-6">
+                                          <input type="text" class="form-control" id="cityDetails" name="city" placeholder="City" readonly>
+                                      </div>
+                                  </div>
+                                  <div class="form-group row">
+                                      <label for="phoneDetails" class="col-sm-4 col-form-label">Phone: </label>
+                                      <div class="col-sm-6">
+                                          <input type="text" class="form-control" id="phoneDetails" name="phone" placeholder="Phone" readonly>
+                                      </div>
+                                  </div>
+                                  <div class="form-group row">
+                                      <label for="mobileDetails" class="col-sm-4 col-form-label">Mobile: </label>
+                                      <div class="col-sm-6">
+                                          <input type="text" class="form-control" id="mobileDetails" name="mobile" placeholder="Mobile" readonly>
+                                      </div>
+                                  </div>
+
+                                  <div class="form-group row">
+                                      <label for="emailDetails" class="col-sm-4 col-form-label">Email</label>
+                                      <div class="col-sm-6">
+                                          <input type="email" class="form-control" id="emailDetails" name="email" placeholder="Email" readonly>
+                                      </div>
+                                  </div>
+                              </td>
+                          </tr>
+                      </table>
+
+
+
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+              </div>
+          </div>
+      </form>
+  </div>
+
+  <div class="modal" id="deleteClientModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title">Confirm Delete</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <p>Are you sure you want to delete client?</p>
+              </div>
+              <div class="modal-footer">
+                  <a class="btn btn-primary" id="delRef" href="">Yes</a>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+
+
   <!-- javascripts -->
   <script src="js/jquery.js"></script>
   <script src="js/bootstrap.min.js"></script>
@@ -437,6 +818,7 @@
   <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
   <!--custome script for all page-->
   <script src="js/scripts.js"></script>
+  <script src="js/client.js"></script>
 
 
 </body>
