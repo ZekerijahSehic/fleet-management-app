@@ -43,7 +43,7 @@ public class InvoiceController {
     @PostMapping("/invoices/addnew")
     public String addNew(Invoice invoice){
         invoiceService.save(invoice);
-        return "redirect:invoice";
+        return "redirect:/invoices";
     }
 
     @RequestMapping("/invoices/findById")
@@ -55,13 +55,13 @@ public class InvoiceController {
     @RequestMapping(value = "/invoices/update", method = {RequestMethod.PUT, RequestMethod.GET})
     public String updateInvoice(Invoice invoice){
         invoiceService.save(invoice);
-        return "redirect:invoice";
+        return "redirect:/invoices";
     }
 
     @RequestMapping(value = "/invoices/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
     public String deleteInvoice(Integer id){
         invoiceService.delete(id);
-        return "reditrct:invoice";
+        return "reditrct:/invoices";
     }
 
 
