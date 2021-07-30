@@ -551,7 +551,7 @@
                           <label for="ddlInvoiceStatusEdit" class="col-form-label">Invoice Status: </label>
                           <select class="form-control" id="ddlInvoiceStatusEdit" name="invoicestatusid">
                               <option>-SELECT-</option>
-                              <option th:each="invoiceStatu : ${invoiceStatus}"
+                              <option th:each="invoiceStatus : ${invoiceStatus}"
                                       th:value="${invoiceStatus.id}"
                                       th:text="${invoiceStatus.description}">
                               </option>
@@ -571,6 +571,26 @@
               </div>
           </div>
       </form>
+  </div>
+
+  <div class="modal" id="deleteInvoiceModal" tabindex="-1" role="dialog" >
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title">Confirm delete</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <p>Are you sure you want to delete this invoice?</p>
+              </div>
+              <div class="modal-footer">
+                  <a href="" class="btn btn-primary" id="delRef">Yes, Delete</a>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+      </div>
   </div>
 
   <!-- javascripts -->
