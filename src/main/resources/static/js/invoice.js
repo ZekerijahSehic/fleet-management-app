@@ -18,6 +18,23 @@ $('document').ready(function() {
       $('#editInvoiceModal').modal();
    });
 
+   $('table #detailsButton').on('click', function (event){
+      event.preventDefault();
+
+      var href = $(this).attr('href');
+
+      $.get(href, function (invoice, status) {
+         $('#idDetails').val(invoice.id);
+         $('#ddlClientDetails').val(invoice.clientid);
+
+         var invoiceDate = invoice.invoiceDate.substr(0,10);
+         $('#invoiceDateDetails').val(invoiceDate);
+         $('#ddlInvoiceStatusDetails').val(invoice.invoicestatusid);
+         $('#remarksDetails').val(invoice.remarks);
+      });
+      $('#detailsInvoiceModal').modal();
+   });
+
 
    $('.table #deleteButton').on('click',function(event) {
       event.preventDefault();
