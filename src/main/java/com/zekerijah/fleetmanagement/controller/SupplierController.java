@@ -32,7 +32,7 @@ public class SupplierController {
         model.addAttribute("suppliers", supplierList);
 
         List<Country> countryList = countryService.getListCountry();
-        model.addAttribute("countires", countryList);
+        model.addAttribute("countries", countryList);
 
         List<State> stateList = stateService.getListState();
         model.addAttribute("states", stateList);
@@ -46,13 +46,14 @@ public class SupplierController {
         return "redirect:/suppliers";
     }
 
-    @RequestMapping
+    @RequestMapping("/suppliers/findById")
     @ResponseBody
-    public Optional<Supplier> getById(Integer id){
+    public Optional<Supplier> findById(int id){
         return supplierService.getById(id);
     }
 
-    @RequestMapping(value = "/suppliers/edit", method = {RequestMethod.GET, RequestMethod.PUT})
+
+    @RequestMapping(value = "/suppliers/update", method = {RequestMethod.GET, RequestMethod.PUT})
     public String updateSupplier(Supplier supplier){
         supplierService.save(supplier);
         return "redirect:/suppliers";
