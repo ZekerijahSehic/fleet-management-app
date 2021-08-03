@@ -6,13 +6,17 @@ $('document').ready(function() {
       var href = $(this).attr('href');
 
       $.get(href, function (supplier, status) {
-         $('#idEdit').val(supplier.id);
-         $('#nameEdit').val(supplier.name);
-         $('#detailsEdit').val(supplier.details);
-         $('#websiteEdit').val(supplier.website);
          $('#addressEdit').val(supplier.address);
          $('#cityEdit').val(supplier.city);
+         $('#ddlCountryEdit').val(supplier.countryid);
+         $('#detailsEdit').val(supplier.details);
+         $('#emailEdit').val(supplier.email);
+         $('#idEdit').val(supplier.id);
+         $('#mobileEdit').val(supplier.mobile);
+         $('#nameEdit').val(supplier.name);
          $('#phoneEdit').val(supplier.phone);
+         $('#ddlStateEdit').val(supplier.stateid);
+         $('#websiteEdit').val(supplier.website);
       });
       $('#editSupplierModal').modal();
    });
@@ -28,8 +32,13 @@ $('document').ready(function() {
          $('#detailsDetails').val(supplier.details);
          $('#websiteDetails').val(supplier.website);
          $('#addressDetails').val(supplier.address);
+         $('#nationalityDetails').val(supplier.nationality);
+         $('#ddlStateDetails').val(supplier.stateid);
+         $('#ddlCountryDetails').val(supplier.countryid);
          $('#cityDetails').val(supplier.city);
          $('#phoneDetails').val(supplier.phone);
+         $('#mobileDetails').val(supplier.mobile);
+         $('#emailDetails').val(supplier.email);
       });
       $('#detailsSupplierModal').modal();
    });
@@ -37,7 +46,7 @@ $('document').ready(function() {
    $('.table #deleteButton').on('click',function(event) {
       event.preventDefault();
       var href = $(this).attr('href');
-      $('#deleteClientModal #delRef').attr('href', href);
-      $('#deleteClientModal').modal();
+      $('#deleteSupplierModal #delRef').attr('href', href);
+      $('#deleteSupplierModal').modal();
    });
 });
