@@ -9,10 +9,10 @@ import com.zekerijah.fleetmanagement.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class VehicleMaintenanceController {
@@ -40,4 +40,27 @@ public class VehicleMaintenanceController {
         return "vehicle-maintenance";
     }
 
+    @PostMapping("/vehicle-maintenances/save")
+    public String save(VehicleMaintenance vehicleMaintenance){
+        vehicleMaintenanceService.save(vehicleMaintenance);
+        return "redirect:/vehicle-maintenances";
+    }
+
+    @GetMapping("/vehicle-maintenances/findById")
+    @ResponseBody
+    public Optional<VehicleMaintenance> getById(int id){
+        return vehicleMaintenanceService.getById(id);
+    }
+
+    @RequestMapping(value = "/vehicle-maintenances/update", method = {RequestMethod.GET, RequestMethod.POST})
+    public String update(VehicleMaintenance vehicleMaintenance){
+        vehicleMaintenanceService.save(vehicleMaintenance);
+        return "redirect:/vehicle-maintenances";
+    }
+
+    @RequestMapping(value = "/vehicle-maintenances/delete", method = {RequestMethod.GET, RequestMethod.DELETE})
+    public String delete(int id){
+        vehicleMaintenanceService.delete(id);
+        return "redirect:/vehicle-maintenances";
+    }
 }
