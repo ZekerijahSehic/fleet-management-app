@@ -40,7 +40,7 @@ public class VehicleMaintenanceController {
         return "vehicle-maintenance";
     }
 
-    @PostMapping("/vehicle-maintenances/save")
+    @PostMapping("/vehicle-maintenances/addnew")
     public String save(VehicleMaintenance vehicleMaintenance){
         vehicleMaintenanceService.save(vehicleMaintenance);
         return "redirect:/vehicle-maintenances";
