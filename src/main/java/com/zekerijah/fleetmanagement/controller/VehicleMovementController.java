@@ -1,8 +1,10 @@
 package com.zekerijah.fleetmanagement.controller;
 
+import com.zekerijah.fleetmanagement.model.Location;
 import com.zekerijah.fleetmanagement.model.Supplier;
 import com.zekerijah.fleetmanagement.model.Vehicle;
 import com.zekerijah.fleetmanagement.model.VehicleMovement;
+import com.zekerijah.fleetmanagement.service.LocationService;
 import com.zekerijah.fleetmanagement.service.SupplierService;
 import com.zekerijah.fleetmanagement.service.VehicleMovementService;
 import com.zekerijah.fleetmanagement.service.VehicleService;
@@ -24,7 +26,7 @@ public class VehicleMovementController {
     private VehicleService vehicleService;
 
     @Autowired
-    private SupplierService supplierService;
+    private LocationService locationService;
 
     @GetMapping("/vehicle-movements")
     public String getVehicleMovement(Model model){
@@ -34,8 +36,8 @@ public class VehicleMovementController {
         List<Vehicle> vehicleList = vehicleService.getAllVehicles();
         model.addAttribute("vehicles", vehicleList);
 
-        List<Supplier> supplierList = supplierService.getAllSuppliers();
-        model.addAttribute("suppliers", supplierList);
+        List<Location> locationList = locationService.getAllLocations();
+        model.addAttribute("locations", locationList);
 
         return "vehicle-movement";
     }
